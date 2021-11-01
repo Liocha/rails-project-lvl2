@@ -4,7 +4,7 @@
 
 [![hexlet-check](https://github.com/Liocha/rails-project-lvl2/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions/workflows/hexlet-check.yml)
 
-[![rubyonrails-lint-tests](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml)
+[![Rails - Install dependencies and run linters and run tests](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml)
 
 # link to Heroku
 
