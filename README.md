@@ -2,9 +2,13 @@
 
 [![Actions Status](https://github.com/Liocha/rails-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions)
 
+[![hexlet-check](https://github.com/Liocha/rails-project-lvl2/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions/workflows/hexlet-check.yml)
+
+[![rubyonrails-lint-tests](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml/badge.svg)](https://github.com/Liocha/rails-project-lvl2/actions/workflows/rubyonrails-lint-tests.yml)
+
 # link to Heroku
 
-https://mighty-forest-00921.herokuapp.com/
+https://evil-corpse-48853.herokuapp.com/
 
 # README
 
