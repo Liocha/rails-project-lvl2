@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.creator_id = current_user.id
     if @post.save
-      redirect_to root_url
+      redirect_to root_url, flash: { success: 'Новая статья успешно добавлена!' }
     else
       render :new
     end

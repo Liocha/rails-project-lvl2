@@ -14,6 +14,7 @@
     <header>
       <%= render "shared/navbar", signed_in: user_signed_in? %>
     </header>
+    <%= render "shared/flash" %>
     </div>
     <%= yield %>
   </body>

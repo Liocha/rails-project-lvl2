@@ -1,3 +1,7 @@
 class Post < ApplicationRecord
-  has_one :post_category  
+  has_one :post_category 
+
+  validates :body, presence: true, length: { minimum: 50 }
+  validates :title, presence: true, length: { minimum: 5 }
+  validates :post_category_id, presence: true
 end
