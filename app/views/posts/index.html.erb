@@ -1,0 +1,19 @@
+<div class="container my-4">
+    <h1>Коллективный блог</h1>
+    <div class="row">
+        <% @posts.each do |post| %>
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h2 class="h5 card-title">
+                            <a class="link-dark text-decoration-none" href="<%= post_path(post) %>"><%= post.title %></a>
+                        </h2>
+                        <div class="card-text mb-2"><%= post.body %></div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+

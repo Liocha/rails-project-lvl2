@@ -1,0 +1,23 @@
+<div class="container my-4">
+    <h1 class="h2 mb-4">Новый статья</h1>
+    <%= form_with model: @post do |form| %>
+        <div>
+          <%= form.label :title %><br>
+          <%= form.text_field :title %>
+        </div>
+      
+        <div>
+          <%= form.label :body %><br>
+          <%= form.text_area :body %>
+        </div>
+      
+        <%= form.collection_select :post_category_id, PostCategory.all, :id, :name %>
+      
+        <div>
+          <%= form.submit %>
+        </div>
+      <% end %>
+</div>
+
+
+
