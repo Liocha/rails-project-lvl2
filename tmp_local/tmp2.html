@@ -1,0 +1,103 @@
+<div class="container my-4">
+    <div class="row">
+        <article class="col-12">
+            <h1 class="mb-4 mb-lg-5"><%= @post.title %></h1>
+            <p><%= @post.body %></p>
+        </article>
+    </div>
+
+    <div class="row">
+        <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
+        <%= f.input :content %>
+        <%= f.button :submit, class: "btn-primary my-2"  %>
+        <% end %>
+    </div>
+
+
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Все комментарии</h6>
+        <% @post.post_comments.roots.each do |comment| %>
+        <% break if comment.content.nil? %>
+
+        <% res  = comment.children.arrange_serializable() %>
+        <% 
+
+            def to_html(array)
+                array.reduce('') do |acc, el|
+
+
+                "#{acc}
+                <div class='d-flex text-muted pt-3'>
+                <svg class='bd-placeholder-img flex-shrink-0 me-2 rounded' width='32' height='32'
+                    xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: 32x32'
+                    preserveAspectRatio='xMidYMid slice' focusable='false'>
+                    <title>Placeholder</title>
+                    <rect width='100%' height='100%' fill='#007bff'></rect><text x='50%' y='50%' fill='#007bff'
+                        dy='.3em'>32x32</text>
+                </svg>
+
+                <p class='pb-3 mb-0 small lh-sm border-bottom'>
+                    <strong class='d-block text-gray-dark'>@test</strong>
+                    #{el['content']}
+                </p>
+            </div>
+                "
+                end
+            end
+              
+        %>
+
+
+
+        <div class="d-flex text-muted pt-3">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
+                    dy=".3em">32x32</text>
+            </svg>
+
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                <strong class="d-block text-gray-dark">@username</strong>
+                <%= comment.content %>
+            </p>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="card mb-4">
+            <div class="card-header small mb-2 d-flex">
+                <div id="comment-27">
+                    <span class="font-weight-bold">test@test.ru</span>
+                    <span class="mx-2 font-weight-light">меньше 1 минуты</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <div class="w-100">
+                    <p class="card-text"><%= comment.content %></p>
+                </div>
+                <a class="d-block small text-muted" data-bs-toggle="collapse"
+                    href="#new_post_comment-<%= comment.id %>">Ответить</a>
+                <div class="collapse" data-bs-target="#new_post_comment-<%= comment.id %>"
+                    id="new_post_comment-<%= comment.id %>">
+                    <div class="row">
+                        <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
+                        <%= f.input :content %>
+                        <%= f.hidden_field :parent_id, value: comment.id %>
+                        <%= f.button :submit, class: "btn-primary my-2"  %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-4 my-3 p-3 bg-body rounded ">
+                <%=raw to_html res %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+</div>

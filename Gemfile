@@ -67,3 +67,5 @@ gem 'rubocop-rails', require: false
 gem 'devise'
 
 gem 'simple_form'
+
+gem 'ancestry'

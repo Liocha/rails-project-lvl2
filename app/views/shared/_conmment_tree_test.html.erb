@@ -1,0 +1,48 @@
+<% def to_html(arr)
+    res =  arr.reduce('') do |acc, el|
+        logo = render 'shared/logo'
+        content = "<p class='pb-3 mb-0 small lh-sm border-bottom'>
+                    <strong class='d-block text-gray-dark'>@username</strong>
+                    #{el}
+                   </p>"
+
+        "#{logo} #{content} #{answ}" 
+    end.html_safe
+    "<div class='my-3 p-3 bg-body rounded shadow-sm'>#{res}</div>"
+end %>
+
+
+<% def to_htm(el)
+        logo = render 'shared/logo'
+
+        form =  simple_form_for [ @post, @post.post_comments.build ] do |f| 
+            f.input :content 
+            f.hidden_field :parent_id, value: el['id'] 
+            f.button :submit, class: "btn-primary my-2 btn-sm" 
+         end 
+
+        answ = "<small class='d-block text-gray-dark mt-2'>
+                    <a class='d-block small text-muted' data-bs-toggle='collapse'
+                    href='#new_post_comment-#{el['id']}'>Ответить</a>
+                </small>
+                <div class='collapse mt-2' data-bs-target='#new_post_comment-#{el['id']}'
+                    id='new_post_comment-#{el['id']}'>
+                        <div class='row'>
+                        #{form}
+                        </div>
+                </div>"
+
+        content = "<div class='pb-3 mb-0 small lh-sm border-bottom flex-grow-1'>
+                    <strong class='d-block text-gray-dark'>@username</strong>
+                    #{el['content']} #{answ}
+                    </div>"
+    "<div class='d-flex text-muted pt-3 '>#{logo} #{content}</div>"
+end %>
+
+<% ct = children.reduce('') do |acc, el|
+      "#{acc} #{to_htm el}"  
+    end.html_safe
+%>
+
+
+ <div class='my-3 p-3 bg-body rounded ps-5'><%=  ct %></div>

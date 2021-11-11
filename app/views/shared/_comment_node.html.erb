@@ -1,16 +1,4 @@
-<div class="container my-4">
-    <div class="row bg-body rounded shadow-lg">
-        <article class="col-12">
-            <h1 class="mb-4 mb-lg-5"><%= @post.title %></h1>
-            <p><%= @post.body %></p>
-        </article>
-
-        <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
-        <%= f.input :content %>
-        <%= f.button :submit, class: "btn-primary my-2"  %>
-        <% end %>
-    </div>
-    <div class="my-3 p-3 bg-body rounded shadow-lg">
+<div class="my-3 p-3 bg-body rounded shadow-lg">
         <h6 class="border-bottom pb-2 mb-0">Все комментарии</h6>
         <% @post.post_comments.roots.each do |comment| %>
         <% break if comment.content.nil? %>
@@ -42,4 +30,3 @@
         <% end %>
         </div>
     </div>
-</div>

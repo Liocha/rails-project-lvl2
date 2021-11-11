@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def index
     @posts = Post.all
@@ -5,12 +7,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+#    logger.debug "!!!Params #{@post.post_comments}"
   end
 
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.creator_id = current_user.id
@@ -22,8 +25,8 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params[:post].permit!
-    end
 
+  def post_params
+    params[:post].permit!
+  end
 end
