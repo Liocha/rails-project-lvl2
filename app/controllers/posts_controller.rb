@@ -7,7 +7,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-#    logger.debug "!!!Params #{@post.post_comments}"
+
+    @comments = @post.post_comments.roots.reduce([]) do |acc, car|
+      acc.concat(car.subtree.arrange_serializable())
+    end
+
   end
 
   def new

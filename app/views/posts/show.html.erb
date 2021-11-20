@@ -4,7 +4,6 @@
             <h1 class="mb-4 mb-lg-5"><%= @post.title %></h1>
             <p><%= @post.body %></p>
         </article>
-
         <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
         <%= f.input :content %>
         <%= f.button :submit, class: "btn-primary my-2"  %>
@@ -12,34 +11,6 @@
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-lg">
         <h6 class="border-bottom pb-2 mb-0">Все комментарии</h6>
-        <% @post.post_comments.roots.each do |comment| %>
-        <% break if comment.content.nil? %>
-
-        <% children  = comment.children.arrange_serializable() %>
-
-            <div class="d-flex text-muted pt-3 ">
-                <%= render "shared/logo" %>
-                <div class="pb-3 mb-0 small lh-sm border-bottom d-flex flex-column flex-grow-1">
-                    <strong class="d-block text-gray-dark">@username</strong>
-                    <%= comment.content %>
-                    <small class="d-block text-gray-dark mt-2">
-                        <a class="d-block small text-muted" data-bs-toggle="collapse"
-                            href="#new_post_comment-<%= comment.id %>">Ответить</a>
-                    </small>
-                    <div class="collapse mt-2" data-bs-target="#new_post_comment-<%= comment.id %>"
-                            id="new_post_comment-<%= comment.id %>">
-                            <div class="row">
-                                <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
-                                <%= f.input :content %>
-                                <%= f.hidden_field :parent_id, value: comment.id %>
-                                <%= f.button :submit, class: "btn-primary my-2 btn-sm"  %>
-                                <% end %>
-                            </div>
-                    </div>
-                </div>
-            </div> 
-             <%= render partial: "shared/comment_tree", locals: {children: children} %>
-        <% end %>
-        </div>
+        <%= render partial: "shared/comments_tree", locals: {comments: @comments, post: @post} %>
     </div>
 </div>

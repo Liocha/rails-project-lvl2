@@ -2,15 +2,14 @@
 
 class PostCommentsController < ApplicationController
   def create
- #   if params[:post_comment].include?(:parent_id)
- #     parrent_id = params[:post_comment][:parent_id]
-     # logger.debug "!!!Params #{params[:post_comment][:parent_id]}"
- #    PostComment.find(parrent_id).children.create comment_params
- #   else
-    logger.debug "!!!Params #{params}"
-      @post = Post.find(params[:post_id])
-      @comment = @post.post_comments.create!(comment_params)
-  #  end
+    data = {commenter: current_user[:id]}
+    @post = Post.find(params[:post_id])
+    if comment_params.include?(:parent_id)
+      parrent_id = comment_params[:parent_id]
+      PostComment.find(parrent_id).children.create data.merge!(comment_params, {post_id: params[:post_id]})
+    else
+      @comment = @post.post_comments.create! data.merge!(comment_params)
+    end
     redirect_to post_path(@post)
   end
 
