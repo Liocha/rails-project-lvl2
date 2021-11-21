@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# top-level documentation comment for class CreatePosts
 class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|

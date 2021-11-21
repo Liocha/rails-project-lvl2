@@ -69,3 +69,5 @@ gem 'devise'
 gem 'simple_form'
 
 gem 'ancestry'
+
+gem 'minitest-power_assert'

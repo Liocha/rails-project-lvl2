@@ -13,7 +13,7 @@
                         <div id="post-section"><span class="me-2"><span>Автор:
                                 </span><%= User.find(post.creator_id).email %></span></div>
                         <p>
-                            Количечество лайков: <%= post.post_likes.all.count %>
+                            Понравилось: <%= post.post_likes.all.count %>
                         </p>
                     </div>
                 </div>

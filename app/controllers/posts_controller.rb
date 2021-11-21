@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# top-level documentation comment for class PostsController
 class PostsController < ApplicationController
   before_action :require_login, only: %i[new create]
 
@@ -37,9 +38,9 @@ class PostsController < ApplicationController
   end
 
   def require_login
-    unless user_signed_in?
-      redirect_to new_user_session_url,
-                  flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому разделу' }
-    end
+    return if user_signed_in?
+
+    redirect_to new_user_session_url,
+                flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому действию!' }
   end
 end
