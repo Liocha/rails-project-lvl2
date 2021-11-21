@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   has_one :post_category
   has_many :post_comments
+  has_many :post_likes
 
   validates :body, presence: true, length: { minimum: 50 }
   validates :title, presence: true, length: { minimum: 5 }

@@ -4,6 +4,20 @@
             <h1 class="mb-4 mb-lg-5"><%= @post.title %></h1>
             <p><%= @post.body %></p>
         </article>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div id="post-section"><span class="me-2"><span>Автор:</span><%= @autor %></span></div>
+            <div>
+                <%= simple_form_for [ @post, @post.post_likes.build ] do |f| %>
+                <%= f.button :submit, class: "btn-primary my-2"  %>
+                <% end %>
+                <p>
+                    Количечество лайков: <%= @count_likes %>
+                </p>
+            </div>
+        </div>
+
+
         <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
         <%= f.input :content %>
         <%= f.button :submit, class: "btn-primary my-2"  %>

@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :require_login, only: %i[new create]
+
   def index
     @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
-
+    @autor = User.find(@post.creator_id).email
     @comments = @post.post_comments.roots.reduce([]) do |acc, car|
-      acc.concat(car.subtree.arrange_serializable())
+      acc.concat(car.subtree.arrange_serializable)
     end
-
+    @count_likes = @post.post_likes.all.count
   end
 
   def new
@@ -32,5 +34,12 @@ class PostsController < ApplicationController
 
   def post_params
     params[:post].permit!
+  end
+
+  def require_login
+    unless user_signed_in?
+      redirect_to new_user_session_url,
+                  flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому разделу' }
+    end
   end
 end

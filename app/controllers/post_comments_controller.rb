@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+# documentation comment for class PostCommentsController
 class PostCommentsController < ApplicationController
+  before_action :require_login
+
   def create
-    data = {commenter: current_user[:id]}
+    data = { commenter: current_user[:id] }
     @post = Post.find(params[:post_id])
     if comment_params.include?(:parent_id)
       parrent_id = comment_params[:parent_id]
-      PostComment.find(parrent_id).children.create data.merge!(comment_params, {post_id: params[:post_id]})
+      PostComment.find(parrent_id).children.create data.merge!(comment_params, { post_id: params[:post_id] })
     else
       @comment = @post.post_comments.create! data.merge!(comment_params)
     end
@@ -17,5 +20,12 @@ class PostCommentsController < ApplicationController
 
   def comment_params
     params[:post_comment].permit!
+  end
+
+  deaf require_login
+    unless user_signed_in?
+      redirect_to new_user_session_url,
+                  flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому действию!' }
+    end
   end
 end
