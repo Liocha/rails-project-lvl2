@@ -2,10 +2,10 @@
 
 one:
   content: MyText
-  commenter: 1
+  commenter: one
   post: one
 
 two:
   content: MyText
-  commenter: 1
+  commenter: two
   post: two

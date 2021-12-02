@@ -10,7 +10,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @autor = User.find(@post.creator_id).email
     @comments = @post.post_comments.roots.reduce([]) do |acc, car|
       acc.concat(car.subtree.arrange_serializable)
     end

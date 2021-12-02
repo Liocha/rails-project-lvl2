@@ -5,11 +5,11 @@ class PostCommentsController < ApplicationController
   before_action :require_login
 
   def create
-    data = { commenter: current_user[:id] }
+    data = { commenter: current_user }
     @post = Post.find(params[:post_id])
     if comment_params.include?(:parent_id)
       parrent_id = comment_params[:parent_id]
-      PostComment.find(parrent_id).children.create data.merge!(comment_params, { post_id: params[:post_id] })
+      PostComment.find(parrent_id).children.create data.merge!(comment_params, post_id: params[:post_id])
     else
       @comment = @post.post_comments.create! data.merge!(comment_params)
     end

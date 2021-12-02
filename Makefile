@@ -12,3 +12,6 @@ la:
 
 s:
 	rails server
+
+cs:
+	bin/rails console --sandbox

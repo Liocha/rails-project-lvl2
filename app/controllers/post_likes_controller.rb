@@ -5,11 +5,10 @@ class PostLikesController < ApplicationController
   before_action :require_login
 
   def create
-    user_id = current_user[:id]
     @post = Post.find(params[:post_id])
-    @curr_like = @post.post_likes.find_by(creator: user_id)
+    @curr_like = @post.post_likes.find_by(creator: current_user)
     if @curr_like.nil?
-      @post.post_likes.create({ creator: user_id })
+      @post.post_likes.create(creator: current_user)
     else
       @curr_like.destroy
     end

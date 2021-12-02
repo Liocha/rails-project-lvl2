@@ -1,7 +1,7 @@
 <div class="d-flex text-muted pt-3 flex-grow-1">
     <%= render "shared/logo" %>
     <div class="pb-3 mb-0 small lh-sm border-bottom d-flex flex-column flex-grow-1">
-        <strong class="d-block text-gray-dark"><%= User.find(comment['commenter']).email %></strong>
+        <strong class="d-block text-gray-dark"><%= User.find(comment['commenter_id']).email %></strong>
         <%= comment['content'] %>
         <small class="d-block text-gray-dark mt-2">
             <a class="d-block small text-muted" data-bs-toggle="collapse"
