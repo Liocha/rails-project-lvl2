@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_233011) do
+ActiveRecord::Schema.define(version: 2021_12_02_005719) do
 
   create_table "post_categories", force: :cascade do |t|
     t.string "name"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_233011) do
 
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_likes", "posts"
+  add_foreign_key "post_likes", "users", column: "creator_id"
   add_foreign_key "posts", "post_categories"
   add_foreign_key "posts", "users", column: "creator_id"
 end
