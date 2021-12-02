@@ -15,3 +15,6 @@ s:
 
 cs:
 	bin/rails console --sandbox
+
+rs:
+	bin/setup

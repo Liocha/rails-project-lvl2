@@ -24,4 +24,5 @@ jobs:
 
       - name: Run tests
         run: |
+          make rs
           bundle exec rake

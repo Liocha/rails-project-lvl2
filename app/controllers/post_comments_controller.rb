@@ -5,7 +5,7 @@ class PostCommentsController < ApplicationController
   before_action :require_login
 
   def create
-    data = { commenter: current_user }
+    data = { user: current_user }
     @post = Post.find(params[:post_id])
     if comment_params.include?(:parent_id)
       parrent_id = comment_params[:parent_id]
