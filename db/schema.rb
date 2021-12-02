@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_125321) do
+ActiveRecord::Schema.define(version: 2021_12_02_155842) do
 
   create_table "post_categories", force: :cascade do |t|
     t.string "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_12_02_125321) do
   end
 
   create_table "post_likes", force: :cascade do |t|
-    t.integer "creator_id"
+    t.integer "user_id"
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_12_02_125321) do
 
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_likes", "posts"
-  add_foreign_key "post_likes", "users", column: "creator_id"
+  add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "post_categories"
   add_foreign_key "posts", "users", column: "creator_id"
 end

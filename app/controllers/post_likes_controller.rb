@@ -6,9 +6,9 @@ class PostLikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @curr_like = @post.post_likes.find_by(creator: current_user)
+    @curr_like = @post.post_likes.find_by(user: current_user)
     if @curr_like.nil?
-      @post.post_likes.create(creator: current_user)
+      @post.post_likes.create(user: current_user)
     else
       @curr_like.destroy
     end
