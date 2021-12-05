@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# documentation comment for class PostCommentsController
-class PostCommentsController < ApplicationController
+# documentation comment for class CommentsController
+class CommentsController < ApplicationController
   before_action :require_login
 
   def create

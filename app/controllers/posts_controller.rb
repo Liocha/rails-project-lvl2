@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @comments = @post.post_comments.roots.reduce([]) do |acc, car|
       acc.concat(car.subtree.arrange_serializable)
     end
+    @like_from_current_user = @post.post_likes.find_by(user_id: current_user)
     @count_likes = @post.post_likes.all.count
   end
 

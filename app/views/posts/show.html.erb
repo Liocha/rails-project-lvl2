@@ -8,17 +8,27 @@
         <div class="d-flex justify-content-between mt-5">
             <div id="post-section"><span class="me-2"><span>Автор:</span><%= @post.creator.email %></span></div>
             <div>
-                <%= simple_form_for [ @post, @post.post_likes.build ] do |f| %>
+                <% if @like_from_current_user.nil? %>
+
+                <%= simple_form_for :post_like, url: post_likes_path(@post) do |f| %>
                 <%= f.button :submit, class: "btn-primary my-2"  %>
                 <% end %>
+
+                <% else %>
+
+                <%= simple_form_for @like_from_current_user, url: post_like_path(@post), method: 'delete' do |f| %>
+                <%= f.button :submit, class: "btn-primary my-2"  %>
+                <% end %>
+
+                <% end %>
+
+
                 <p>
                     Понравилось: <%= @count_likes %>
                 </p>
             </div>
         </div>
-
-
-        <%= simple_form_for [ @post, @post.post_comments.build ] do |f| %>
+        <%= simple_form_for :post_comment, url: post_comments_path(@post) do |f| %>
         <%= f.input :content %>
         <%= f.button :submit, class: "btn-primary my-2"  %>
         <% end %>

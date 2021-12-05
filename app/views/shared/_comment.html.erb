@@ -10,7 +10,7 @@
         <div class="collapse mt-2" data-bs-target="#new_post_comment-<%= comment['id'] %>"
             id="new_post_comment-<%= comment['id'] %>">
             <div class="row">
-                <%= simple_form_for [ post, post.post_comments.build ] do |f| %>
+                <%= simple_form_for :post_comment, url: post_comments_path(@post.id) do |f| %>
                 <%= f.input :content %>
                 <%= f.hidden_field :parent_id, value: comment['id'] %>
                 <%= f.button :submit, class: "btn-primary my-2 btn-sm"  %>
