@@ -6,14 +6,14 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @curr_like = @post.post_likes.find_by(user: current_user)
-    @post.post_likes.create(user: current_user) if @curr_like.nil?
+    @curr_like = @post.likes.find_by(user: current_user)
+    @post.likes.create(user: current_user) if @curr_like.nil?
     redirect_to post_path(@post)
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    @curr_like = @post.post_likes.find_by(user: current_user)
+    @curr_like = @post.likes.find_by(user: current_user)
     @curr_like&.destroy
     redirect_to post_path(@post)
   end

@@ -10,11 +10,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.post_comments.roots.reduce([]) do |acc, car|
+    @comments = @post.comments.roots.reduce([]) do |acc, car|
       acc.concat(car.subtree.arrange_serializable)
     end
-    @like_from_current_user = @post.post_likes.find_by(user_id: current_user)
-    @count_likes = @post.post_likes.all.count
+    @like_from_current_user = @post.likes.find_by(user_id: current_user)
+    @count_likes = @post.likes.all.count
   end
 
   def new

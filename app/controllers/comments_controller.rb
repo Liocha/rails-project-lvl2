@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       parrent_id = comment_params[:parent_id]
       PostComment.find(parrent_id).children.create data.merge!(comment_params, post_id: params[:post_id])
     else
-      @comment = @post.post_comments.create! data.merge!(comment_params)
+      @comment = @post.comments.create! data.merge!(comment_params)
     end
     redirect_to post_path(@post)
   end
