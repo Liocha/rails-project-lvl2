@@ -24,6 +24,6 @@ class LikesController < ApplicationController
     return if user_signed_in?
 
     redirect_to new_user_session_url,
-                flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому действию!' }
+                flash: { warning: 'Вы должны войти в систему, чтобы получить доступ к этому действию!' }
   end
 end

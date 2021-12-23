@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsProjectLvl2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>RailsProjectLvl2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body class="d-flex flex-column h-100">
-    <header>
-      <%= render "shared/navbar", signed_in: user_signed_in? %>
-    </header>
-    <%= render "shared/flash" %>
-    </div>
-    <%= yield %>
-  </body>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="d-flex flex-column h-100">
+  <header>
+    <%= render "shared/navbar", signed_in: user_signed_in? %>
+  </header>
+  <%=  render partial: "shared/flash" %>
+  </div>
+  <%= yield %>
+</body>
+
 </html>
