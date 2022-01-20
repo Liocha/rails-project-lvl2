@@ -1,0 +1,33 @@
+.container.my-4
+  .row.bg-body.rounded.shadow-lg
+    article.col-12
+      h1.mb-4.text-center.text-decoration-none.pt-2
+        = @post.title
+      p
+        = @post.body
+    .d-flex.justify-content-between
+      .
+        span.text-muted.text-capitalize
+          = @post.creator.model_name.human
+        span.ms-1
+          = @post.creator.email
+      .
+        - if @like_from_current_user.nil?
+          = simple_form_for :post_like, url: post_likes_path(@post) do |f|
+            = f.button :button do
+              i.far.fa-heart
+              p
+                = @count_likes
+        - else
+          = simple_form_for @like_from_current_user, url: post_like_path(@post), method: 'delete' do |f|
+            = f.button :button do
+              i.fas.fa-heart
+              p
+                = @count_likes
+    = simple_form_for :post_comment, url: post_comments_path(@post) do |f|
+      = f.input :content 
+      = f.button :submit, "Создать комментарии", class: "btn-primary my-2"
+  .my-3.p-3.bg-body.rounded.shadow-lg
+    h6.border-bottom.pb-2.mb-0
+      | Все комментарии
+    /=  render partial: "shared/comments_tree", locals: {comments: @comments, post: @post}

@@ -1,0 +1,20 @@
+ru:
+  simple_form:
+    'yes': 'Да'
+    'no': 'Нет'
+    required:
+      text: 'обязательный'
+      mark: '*'
+    error_notification:
+      default_message: 'Пожалуйста, просмотрите проблемы ниже:'
+    labels:
+      defaults:
+        password: 'Пароль'
+        email: 'Электронная почта'
+        password_confirmation: 'Подтвердить пароль'
+        remember_me: Запомнить меня
+      edit:
+        email: 'E-mail.'
+    hints:
+      user:
+        password: не может иметь значение меньшее чем 6 символов

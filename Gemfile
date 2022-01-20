@@ -73,3 +73,7 @@ gem 'ancestry'
 gem 'minitest-power_assert'
 
 gem 'faker'
+
+gem 'slim'
+
+gem 'slim_lint'

@@ -1,0 +1,21 @@
+.container.my-4
+  .row
+    h1.text-center.text-decoration-none
+      = t('app_name')
+  .row
+    - @posts.each do |post|
+      .item_wrap.border.mb-2.p-2
+        h2.item_title
+          = link_to post.title, post_path(post), class: 'h5'
+        .item_body.text-truncate
+          = post.body
+        .text-right.small.mt-2.d-flex.justify-content-between
+          .
+            span.text-muted.text-capitalize
+              = post.creator.model_name.human
+            span.ms-1
+              = post.creator.email
+          .
+            i.fas.fa-heart.mr-3
+            span.ms-2
+              = post.likes.all.count

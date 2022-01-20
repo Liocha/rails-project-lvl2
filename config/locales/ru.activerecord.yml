@@ -1,0 +1,20 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: пользователь
+    attributes:
+      user:
+        password: пароль!
+        email: емайл
+      post:
+        body: Содержание
+        title: Заголовок
+      post_comment:
+        content: Комментарий!
+        body: Содержание!
+      post_category:
+        name: Имя категории
+    errors:
+      messages:
+        blank: 'Пожалуйста заполните поле'

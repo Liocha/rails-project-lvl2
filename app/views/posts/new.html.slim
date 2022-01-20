@@ -1,0 +1,9 @@
+.container.my-4
+  h1.h2.mb-4
+    | Новая статья
+  = simple_form_for @post, url: posts_path  do |f|
+    = f.error_notification
+    = f.input :title 
+    = f.input :body
+    = f.input :post_category_id, collection: PostCategory::all
+    = f.button :submit, class: "btn-primary my-2"

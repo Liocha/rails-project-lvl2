@@ -1,0 +1,16 @@
+- def commentRender(comment, post)
+- 
+-     data =  render partial: "shared/comment", locals: {comment: comment, post: post}
+- 
+-     "<div class='d-flex text-muted'>#{data}</div>"
+- end
+- renderedСomments = comments.reduce('') do |acc, comment|
+-     renderedСomment = commentRender(comment, post)
+-     commentTree = ''
+-     unless  comment['children'].empty?
+-         commentTree = render partial: "shared/comments_tree", locals: {comments: comment['children'], post: @post}
+-     end
+-         "#{acc}#{renderedСomment}#{commentTree}"
+-     end.html_safe
+.p-2.bg-body.rounded
+  = renderedСomments

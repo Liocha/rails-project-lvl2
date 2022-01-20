@@ -1,0 +1,23 @@
+- if flash.any?
+  .app-flash
+    - flash.each do |type, body|
+      - next unless %w(success notice error info danger warning).include?(type.to_s)
+      - type = type == 'notice' ? 'success' : type
+      = content_tag :div, class: "alert alert-#{type} alert-flash" do
+        .container
+
+        .d-flex
+
+        .flex-shrink-0
+
+        .flex-grow-1.ms-3
+          h6.text-uppercase.text-reset.my-1 
+            = t("headline.#{type}")
+          - if body.kind_of?(Array)
+            ul.mb-0
+              - body.each do |message|
+                = content_tag(:li, message)
+          - else
+            p.mb-0
+              = body
+
