@@ -3,11 +3,19 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one)
+    @post = posts(:one)
+    @post_comment = {
+      content: Faker::Books::Lovecraft.sentence
+    }
+  end
+
   test '#create' do
-    post = posts(:one)
-    user = users(:one)
-    sign_in user
-    post post_comments_path(post.id), params: { post_comment: { content: 'Why do we use it?' } }
+    sign_in @user
+    post post_comments_path(@post.id), params: { post_comment: @post_comment }
+    post_comment = PostComment.find_by! content: @post_comment[:content]
+    assert { post_comment }
     assert_response :redirect
   end
 end

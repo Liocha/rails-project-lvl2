@@ -3,14 +3,23 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one)
+    @category = post_categories(:one)
+    @attrs = {
+      title: Faker::Movies::Ghostbusters.character,
+      body: Faker::Movies::Ghostbusters.quote,
+      post_category_id: @category.id
+    }
+  end
+
   test '#index' do
     get root_path
     assert_response :success
   end
 
   test '#new' do
-    user = users(:one)
-    sign_in user
+    sign_in @user
     get new_post_path
     assert_response :success
   end
@@ -22,10 +31,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#create' do
-    user = users(:one)
-    category = post_categories(:one)
-    sign_in user
-    post posts_path, params: { post: { title: 'Why do we use it?', post_category_id: category.id, body: 't is a long established fact that a reader will be distracted by the readable' } }
+    sign_in @user
+    post posts_path, params: { post: @attrs }
+    post = Post.find_by! title: @attrs[:title]
+    assert { post }
     assert_response :redirect
   end
 end
