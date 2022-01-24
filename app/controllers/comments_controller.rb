@@ -10,17 +10,18 @@ class CommentsController < ApplicationController
     if comment_params.include?(:parent_id)
       parrent_id = comment_params[:parent_id]
       PostComment.find(parrent_id).children.create data.merge!(comment_params, post_id: params[:post_id])
+      logger.debug 'New article'
     else
       @comment = @post.comments.create data.merge!(comment_params)
     end
 
-    redirect_to post_path(@post), flash: { danger: @comment.errors.full_messages }
+    redirect_to post_path(@post)
   end
 
   private
 
   def comment_params
-    params.require(:post_comment).permit(:content)
+    params.require(:post_comment).permit(:content, :parent_id)
   end
 
   def require_login

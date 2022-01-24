@@ -1,16 +1,16 @@
-- def commentRender(comment, post)
-- 
--     data =  render partial: "shared/comment", locals: {comment: comment, post: post}
-- 
--     "<div class='d-flex text-muted'>#{data}</div>"
-- end
-- renderedСomments = comments.reduce('') do |acc, comment|
--     renderedСomment = commentRender(comment, post)
--     commentTree = ''
--     unless  comment['children'].empty?
--         commentTree = render partial: "shared/comments_tree", locals: {comments: comment['children'], post: @post}
--     end
--         "#{acc}#{renderedСomment}#{commentTree}"
--     end.html_safe
-.p-2.bg-body.rounded
-  = renderedСomments
+.ps-2.bg-body.rounded
+  .d-flex.text-muted.pt-3.flex-grow-1
+    .mb-0.lh-sm.d-flex.flex-column.flex-grow-1
+      strong.d-block.text-gray-dark
+        = User.find(comment['user_id']).email
+      = comment['content']
+      .d-block.text-gray-dark.mt-2
+        a.d-block.small.text-muted data-bs-toggle="collapse" href="#new_post_comment-#{comment['id']}" Ответить
+        .collapse.mt-2 data-bs-target="#new_post_comment-#{comment['id']}" id="new_post_comment-#{comment['id']}"
+          .row
+            = simple_form_for :post_comment, url: post_comments_path(@post.id) do |f|
+              = f.input :content , label: 'Комментарий'
+              = f.hidden_field :parent_id, value: comment['id']
+              = f.button :submit, "Создать комментарий", class: "btn-primary my-2 btn-sm"
+      - if comment['children'].any?  
+         = render partial: 'shared/comments_tree', collection: comment['children'], as: :comment, locals: {post: @post}
