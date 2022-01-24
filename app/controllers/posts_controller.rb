@@ -10,9 +10,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = children_with_descendants(@post.comments.roots.ids)
+    @comments = children_with_descendants(@post.comments.roots.ids).includes(:user).arrange_serializable
     @like_from_current_user = @post.likes.find_by(user_id: current_user)
     @count_likes = @post.likes.all.count
+    Rails.logger.debug @comments
   end
 
   def new

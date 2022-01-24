@@ -2,7 +2,7 @@
   .d-flex.text-muted.pt-3.flex-grow-1
     .mb-0.lh-sm.d-flex.flex-column.flex-grow-1
       strong.d-block.text-gray-dark
-        = comment.user['email']
+        = comment['user']
       = comment['content']
       .d-block.text-gray-dark.mt-2
         a.d-block.small.text-muted data-bs-toggle="collapse" href="#new_post_comment-#{comment['id']}" Ответить
@@ -12,5 +12,5 @@
               = f.input :content , label: 'Комментарий'
               = f.hidden_field :parent_id, value: comment['id']
               = f.button :submit, "Создать комментарий", class: "btn-primary my-2 btn-sm"
-      /- if comment['children'].any?  
+      - if comment['children'].any?  
          = render partial: 'shared/comments_tree', collection: comment['children'], as: :comment, locals: {post: @post}
