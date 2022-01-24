@@ -10,9 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.roots.reduce([]) do |acc, car|
-      acc.concat(car.subtree.arrange_serializable)
-    end
+    @comments = children_with_descendants(@post.comments.roots.ids)
     @like_from_current_user = @post.likes.find_by(user_id: current_user)
     @count_likes = @post.likes.all.count
   end
@@ -42,5 +40,12 @@ class PostsController < ApplicationController
 
     redirect_to new_user_session_url,
                 flash: { notice: 'Вы должны войти в систему, чтобы получить доступ к этому действию!' }
+  end
+
+  def children_with_descendants(child_ids)
+    query = child_ids.map do |child_id|
+      "(post_comments.id = '#{child_id}' OR post_comments.ancestry LIKE '%#{child_id}%')"
+    end.join(' OR ')
+    PostComment.where(query)
   end
 end
