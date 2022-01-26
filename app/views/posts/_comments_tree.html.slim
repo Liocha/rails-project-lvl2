@@ -13,4 +13,4 @@
               = f.hidden_field :parent_id, value: comment[:id]
               = f.button :submit, "Создать комментарий", class: "btn-primary my-2 btn-sm"
       - if comment[:children].any?  
-         = render partial: 'shared/comments_tree', collection: comment[:children], as: :comment, locals: {post: @post}
+         = render partial: 'posts/comments_tree', collection: comment[:children], as: :comment, locals: {post: @post}

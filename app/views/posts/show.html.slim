@@ -26,4 +26,4 @@
   .my-3.p-3.bg-body.rounded.shadow-lg
     h6.border-bottom.pb-2.mb-0
       | Все комментарии
-    = render partial: 'shared/comments_tree', collection: @comments, as: :comment, locals: {post: @post}
+    = render partial: 'posts/comments_tree', collection: @comments, as: :comment, locals: {post: @post}
