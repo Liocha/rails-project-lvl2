@@ -6,8 +6,7 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @curr_like = @post.likes.find_by(user: current_user)
-    @post.likes.create(user: current_user) if @curr_like.nil?
+    @post.likes.create(user: current_user)
     redirect_to post_path(@post)
   end
 

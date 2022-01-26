@@ -7,14 +7,7 @@ class CommentsController < ApplicationController
   def create
     data = { user: current_user }
     @post = Post.find(params[:post_id])
-    if comment_params.include?(:parent_id)
-      parrent_id = comment_params[:parent_id]
-      PostComment.find(parrent_id).children.create data.merge!(comment_params, post_id: params[:post_id])
-      logger.debug 'New article'
-    else
-      @comment = @post.comments.create data.merge!(comment_params)
-    end
-
+    @comment = @post.comments.create data.merge!(comment_params)
     redirect_to post_path(@post)
   end
 
