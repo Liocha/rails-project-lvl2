@@ -3,7 +3,7 @@
     - flash.each do |type, body|
       - next unless %w(success notice error info danger warning).include?(type.to_s)
       - type = type == 'notice' ? 'success' : type
-      = content_tag :div, class: "alert alert-#{type} alert-flash" do
+      .alert.alert-flash class="alert-#{type}"
         .container
 
         .d-flex
@@ -16,7 +16,8 @@
           - if body.kind_of?(Array)
             ul.mb-0
               - body.each do |message|
-                = content_tag(:li, message)
+                li
+                  = message
           - else
             p.mb-0
               = body
