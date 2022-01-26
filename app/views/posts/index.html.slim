@@ -19,3 +19,6 @@
             i.fas.fa-heart.mr-3
             span.ms-2
               = post.likes.all.count
+  .row
+    .col
+      = paginate @posts

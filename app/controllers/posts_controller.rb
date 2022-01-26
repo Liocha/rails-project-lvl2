@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :require_login, only: %i[new create]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page params[:page]
   end
 
   def show

@@ -77,3 +77,5 @@ gem 'faker'
 gem 'slim'
 
 gem 'slim_lint'
+
+gem 'kaminari'
