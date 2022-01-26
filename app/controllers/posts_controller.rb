@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params[:post].permit!
+    params[:post].permit(:title, :body, :post_category_id)
   end
 
   def require_login
