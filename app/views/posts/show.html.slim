@@ -13,17 +13,13 @@
           = @post.creator.email
       .
         - if @like_from_current_user.nil?
-          = simple_form_for :post_like, url: post_likes_path(@post) do |f|
-            = f.button :button do
-              i.far.fa-heart
-              p
-                = @count_likes
+          = link_to post_likes_path(@post), method: :post do
+            i.far.fa-heart
         - else
-          = simple_form_for @like_from_current_user, url: post_like_path(@post), method: 'delete' do |f|
-            = f.button :button do
-              i.fas.fa-heart
-              p
-                = @count_likes
+         = link_to post_like_path(@post), method: :delete do
+            i.far.fa-heart
+        p
+          = @count_likes
     = simple_form_for :post_comment, url: post_comments_path(@post) do |f|
       = f.input :content 
       = f.button :submit, "Создать комментарии", class: "btn-primary my-2"
