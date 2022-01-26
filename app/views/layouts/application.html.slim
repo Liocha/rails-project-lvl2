@@ -10,6 +10,6 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body.d-flex.flex-column.h-100
     header
-      = render "shared/navbar", signed_in: user_signed_in?
+      = render "shared/navbar"
     = render partial: "shared/flash"
     = yield
