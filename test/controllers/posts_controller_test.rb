@@ -7,8 +7,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     @category = post_categories(:one)
     @attrs = {
-      title: Faker::Movies::Ghostbusters.character,
-      body: Faker::Movies::Ghostbusters.quote,
+      title: Faker::Lorem.paragraph(sentence_count: 1),
+      body: Faker::Lorem.paragraph_by_chars,
       post_category_id: @category.id
     }
   end
