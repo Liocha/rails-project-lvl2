@@ -8,7 +8,6 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:creator).page params[:page]
   end
 
-  # rubocop:disable Metrics/MethodLength
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.children_with_descendants(@post.comments.roots.ids).includes(:user).arrange_serializable do |parent, children|
@@ -24,7 +23,6 @@ class PostsController < ApplicationController
     @like_from_current_user = @post.likes.find_by(user_id: current_user)
     @count_likes = @post.post_likes_count
   end
-  # rubocop:enable Metrics/MethodLength
 
   def new
     @post = Post.new
