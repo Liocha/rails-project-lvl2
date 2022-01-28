@@ -3,12 +3,14 @@
     = t('titles.sign_up')
   .row.justify-content-center
     .col-xl-4.col-lg-6.col-sm-10
-      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = simple_form_for(resource,
+      as: resource_name,
+      url: registration_path(resource_name)) do |f|
         = f.error_notification
         .form-inputs
-          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
-          = f.input :password, required: true, input_html: { autocomplete: "new-password" }
-          = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
+          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
+          = f.input :password, required: true, input_html: { autocomplete: 'new-password' }
+          = f.input :password_confirmation, required: true, input_html: { autocomplete: 'new-password' }
         .form-actions
-          = f.button :submit, t('titles.sign_up'), class: "btn-primary my-2"
-      = render "devise/shared/links"
+          = f.button :submit, t('titles.sign_up'), class: 'btn-primary my-2'
+      = render 'devise/shared/links'

@@ -5,12 +5,12 @@
         = comment[:autor_email]
       = comment[:content]
       .d-block.text-gray-dark.mt-2
-        a.d-block.small.text-muted data-bs-toggle="collapse" href="#new_post_comment-#{comment[:id]}" Ответить
+        a.d-block.small.text-muted data-bs-toggle='collapse' href="#new_post_comment-#{comment[:id]}" Ответить
         .collapse.mt-2 data-bs-target="#new_post_comment-#{comment[:id]}" id="new_post_comment-#{comment[:id]}"
           .row
             = simple_form_for :post_comment, url: post_comments_path(@post.id) do |f|
-              = f.input :content , label: 'Комментарий'
+              = f.input :content, label: 'Комментарий'
               = f.hidden_field :parent_id, value: comment[:id]
-              = f.button :submit, "Создать комментарий", class: "btn-primary my-2 btn-sm"
-      - if comment[:children].any?  
-         = render partial: 'posts/comments_tree', collection: comment[:children], as: :comment, locals: {post: @post}
+              = f.button :submit, 'Создать комментарий', class: 'btn-primary my-2 btn-sm'
+      - if comment[:children].any?
+         = render partial: 'posts/comments_tree', collection: comment[:children], as: :comment, locals: { post: @post }

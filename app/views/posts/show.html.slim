@@ -21,9 +21,9 @@
         p
           = @count_likes
     = simple_form_for :post_comment, url: post_comments_path(@post) do |f|
-      = f.input :content 
-      = f.button :submit, "Создать комментарии", class: "btn-primary my-2"
+      = f.input :content
+      = f.button :submit, 'Создать комментарии', class: 'btn-primary my-2'
   .my-3.p-3.bg-body.rounded.shadow-lg
     h6.border-bottom.pb-2.mb-0
       | Все комментарии
-    = render partial: 'posts/comments_tree', collection: @comments, as: :comment, locals: {post: @post}
+    = render partial: 'posts/comments_tree', collection: @comments, as: :comment, locals: { post: @post }

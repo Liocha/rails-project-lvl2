@@ -1,8 +1,8 @@
 - if flash.any?
   .app-flash
     - flash.each do |type, body|
-      - next unless %w(success notice error info danger warning).include?(type.to_s)
-      - type = type == 'notice' ? 'success' : type
+      - next unless %w[success notice error info danger warning].include?(type.to_s)
+      - type = 'success' if type == 'notice'
       .alert.alert-flash class="alert-#{type}"
         .container
 
@@ -11,9 +11,9 @@
         .flex-shrink-0
 
         .flex-grow-1.ms-3
-          h6.text-uppercase.text-reset.my-1 
+          h6.text-uppercase.text-reset.my-1
             = t("headline.#{type}")
-          - if body.kind_of?(Array)
+          - if body.is_a?(Array)
             ul.mb-0
               - body.each do |message|
                 li
@@ -21,4 +21,3 @@
           - else
             p.mb-0
               = body
-
