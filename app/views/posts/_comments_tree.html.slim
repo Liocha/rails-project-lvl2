@@ -2,7 +2,7 @@
   .d-flex.text-muted.pt-3.flex-grow-1
     .mb-0.lh-sm.d-flex.flex-column.flex-grow-1
       strong.d-block.text-gray-dark
-        = comment[:autor_email]
+        = comment[:creator_email]
       = comment[:content]
       .d-block.text-gray-dark.mt-2
         a.d-block.small.text-muted data-bs-toggle='collapse' href="#new_post_comment-#{comment[:id]}" Ответить

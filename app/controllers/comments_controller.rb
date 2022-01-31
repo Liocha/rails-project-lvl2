@@ -8,7 +8,11 @@ class CommentsController < ApplicationController
     data = { user: current_user }
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create data.merge!(comment_params)
-    redirect_to post_path(@post)
+    if @comment.errors.any?
+      redirect_to post_path(@post), flash: { warning: @comment.errors.full_messages.join(' ') }
+    else
+      redirect_to post_path(@post), flash: { success: 'Ваш комментарий успешно добавлен! Аллаху акбар!' }
+    end
   end
 
   private

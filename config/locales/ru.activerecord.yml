@@ -3,18 +3,25 @@ ru:
     models:
       user:
         one: пользователь
+      post:
+        one: пост
+      postСategory:
+        one: Категория
     attributes:
       user:
-        password: пароль!
+        password: Пароль
         email: емайл
+        password_confirmation: 'Подтверждение'
       post:
         body: Содержание
         title: Заголовок
+        post_category: Категория
       post_comment:
         content: Комментарий!
-        body: Содержание!
-      post_category:
-        name: Имя категории
+        body: Содержание
     errors:
       messages:
-        blank: 'Пожалуйста заполните поле'
+        blank: 'не может быть пустым'
+        too_short: 'недостаточной длины'
+        required: 'не может отсутствовать'
+        confirmation: 'пароля не совпадает со значением поля %{attribute}'

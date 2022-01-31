@@ -14,10 +14,9 @@ class PostsController < ApplicationController
       {
         id: parent.id,
         content: parent.content,
-        autor_email: parent.user.email,
+        creator_email: parent.user.email,
         children: children,
         parent: parent
-
       }
     end
     @like_from_current_user = @post.likes.find_by(user_id: current_user)
