@@ -2,23 +2,20 @@ ru:
   activerecord:
     models:
       user:
-        one: пользователь
+        one: Пользователь
       post:
-        one: пост
-      postСategory:
-        one: Категория
+        one: Пост
+      post_comment: Комментарий
     attributes:
       user:
         password: Пароль
-        email: емайл
+        email: Емайл
         password_confirmation: 'Подтверждение'
       post:
         body: Содержание
         title: Заголовок
-        post_category: Категория
       post_comment:
-        content: Комментарий!
-        body: Содержание
+        content: Содержание!
     errors:
       messages:
         blank: 'не может быть пустым'
